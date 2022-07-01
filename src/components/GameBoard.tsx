@@ -13,6 +13,7 @@ interface Square {
     square: string;
     id: string;
     selected: boolean;
+    matched: boolean;
 }
 
 const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
@@ -91,9 +92,17 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
                 setGameBoard(matchedGameBoard)
             })
         } else {
+            const testOne = gameBoard?.find(square => square.id === squares[0].id)
+            const testTwo = gameBoard?.find(square => square.id === squares[1].id)
+
+            const notMachedGameBoard = gameBoard?.map(gameSquare => {
+                if (gameSquare.square === testOne?.square) {
+                    return { ...gameSquare, selected: false }
+                }
+                return gameSquare
+            })
+            setGameBoard(notMachedGameBoard)
             console.log("They are different");
-            squares.forEach(square => console.log(square))
-            // Run turn-restarting function with a little animation perhaps.
         }
         setSquaresToCompare([]);
     };
@@ -107,12 +116,13 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
             return square;
         });
         setGameBoard(selectedSquare);
-    }; // Now I need some piece of state which accepts only 2 values. 2 squares and compares them. If they don't match - I need to find them in gameBoard state and set them all to be non-selected. If they do match - their SELECTED property stays on true and they gain some new color.
+    };
 
     const addSquaresToCompare = (square: { // If sqare us already MATCHED - prevent from adding it there.
         square: string;
         id: string;
         selected: boolean;
+        matched: boolean;
     }) => {
         if (squaresToCompare.length < 2) {
             setSquaresToCompare((squares) => [...squares, square]); // If there are less than 2 - add squares to compare.
@@ -176,7 +186,6 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
                             style={{
                                 width: gameSize?.squareSize,
                                 height: gameSize?.squareSize,
-                                backgroundColor: square.matched ? "orange" : "#293241"
                             }}
                             id="square"
                         >
