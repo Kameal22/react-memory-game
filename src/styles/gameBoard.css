@@ -88,8 +88,5 @@
     font-size: 1.4em;
     background-color: #293241;
     color: ivory;
-}
-
-.square:hover{
     cursor: pointer;
 }

@@ -78,6 +78,14 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
     // If EVERY square value in a gameBoard has selected === true - set game end.
   }, [gameBoard]);
 
+  const checkSquaresEquality = (squares: Square[]) => {
+    if (squares.every((square) => square.square === squares[0].square)) {
+      console.log("They are the same!");
+    } else {
+      console.log("They are different");
+    }
+  };
+
   const selectSquare = (id: string) => {
     // This function shows what's on "the other side" of a square. And now I can unlimitly check every square.
     const selectedSquare = gameBoard?.map((square) => {
@@ -96,10 +104,14 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
   }) => {
     if (squaresToCompare.length < 2) {
       setSquaresToCompare((squares) => [...squares, square]); // If there are less than 2 - add squares to compare.
-    } else {
-      console.log("CHECKING FUNCTION"); // If length exceeds 2 - run function that will chec if they're equal.
     }
   };
+
+  useEffect(() => {
+    if (squaresToCompare.length === 2) {
+      checkSquaresEquality(squaresToCompare);
+    }
+  }, [squaresToCompare]);
 
   return (
     <div className="gameBoard">
