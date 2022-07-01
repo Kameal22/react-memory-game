@@ -1,0 +1,12 @@
+.App{
+  height: 100vh;
+  background-color: #293241;
+}
+
+.gameHeading{
+  color: ivory;
+  position: absolute; 
+  top: 5%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+}

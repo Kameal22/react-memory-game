@@ -1,0 +1,95 @@
+.gameBoard{
+    width: 50%;
+    height: 70%;
+    border: 1px solid ivory;
+    background-color: ivory;
+    border-radius: 20px;
+    position: absolute; 
+    top: 55%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+}
+
+.gameBoardOptions{
+    width: 90%;
+    margin-top: 2vh;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.countdown{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1
+}
+
+.newGameButton{
+    width: 25%;
+    border-radius: 10px;
+    border: none;
+    background-color: #bdc8d3be;
+    padding: 6px 6px;
+    letter-spacing: 1px;
+    color: black;
+    font-weight: bold;
+    margin-right: 2em;
+    font-size: .8em;
+}
+
+.newGameButton:hover{
+    cursor: pointer;
+}
+
+.restartButton{
+    width: 25%;
+    border-radius: 10px;
+    border: none;
+    background-color: orange;
+    padding: 6px 6px;
+    letter-spacing: 1px;
+    color: black;
+    font-weight: bold;
+    margin-right: 2em;
+    font-size: .8em;
+}
+
+.restartButton:hover{
+    cursor: pointer;
+}
+
+.game{
+    margin-top: 2vh;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 90%;
+    display: grid;
+    place-items: center;
+    column-gap: 10px;
+    row-gap: 15px;
+}
+
+#square{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.4em;
+    background-color: #293241;
+    color: ivory;
+}
+
+.square:hover{
+    cursor: pointer;
+}

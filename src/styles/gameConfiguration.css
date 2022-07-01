@@ -1,0 +1,95 @@
+.gameConfiguration{
+    width: 40%;
+    height: 70%;
+    border: 1px solid ivory;
+    background-color: ivory;
+    border-radius: 20px;
+    position: absolute; 
+    top: 55%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+}
+
+.chooseGameStyle{
+    width: 90%;
+    margin-top: 6vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.chooseGameStyle h3{
+    color: rgb(93, 109, 124);
+    font-size: 1em;
+}
+
+.themes{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.styles{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gameThemeChoice{
+    width: 45%;
+    border-radius: 15px;
+    border: none;
+    background-color: #91a0b0be;
+    padding: 9px 9px;
+    letter-spacing: 1px;
+    color: ivory;
+    font-weight: bold;
+}
+
+.gameSizeChoice{
+    width: 30%;
+    border-radius: 15px;
+    border: none;
+    background-color: #91a0b0be;
+    padding: 10px 10px;
+    letter-spacing: 1px;
+    color: ivory;
+    font-weight: bold;
+}
+
+.gameSizeChoice:hover{
+    cursor: pointer;
+    background-color: #293241;
+}
+
+.gameThemeChoice:hover{
+    cursor: pointer;
+    background-color: #293241;
+}
+
+.startTheGame{
+    position: absolute; 
+    top: 90%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: 45%;
+    border-radius: 25px;
+    border: none;
+    background-color: orange;
+    padding: 15px;
+    letter-spacing: 1px;
+    color: ivory;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.startTheGame:hover{
+    cursor: pointer;
+}
+
+.startTheGame:disabled{
+    background-color: grey;
+}
