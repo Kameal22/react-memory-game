@@ -108,6 +108,7 @@
 
     .game{
         max-width: 100%;
+        margin-top: 4vh;
     }
 }
 
@@ -118,6 +119,7 @@
 
     .game{
         max-width: 100%;
+        margin-top: 2vh;
     }
 
     .newGameButton{
