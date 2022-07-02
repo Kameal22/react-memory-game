@@ -10,13 +10,13 @@ interface Props {
 const Timer: React.FC<Props> = ({ minutes, seconds, setMinutes, setSeconds }) => {
 
     useEffect(() => {
-        let myInterval = setInterval(() => {
+        let interval = setInterval(() => {
             if (seconds > 0) {
                 setSeconds(seconds - 1);
             }
             if (seconds === 0) {
                 if (minutes === 0) {
-                    clearInterval(myInterval);
+                    clearInterval(interval);
                 } else {
                     setMinutes(minutes - 1);
                     setSeconds(59);
@@ -24,9 +24,9 @@ const Timer: React.FC<Props> = ({ minutes, seconds, setMinutes, setSeconds }) =>
             }
         }, 1000);
         return () => {
-            clearInterval(myInterval);
+            clearInterval(interval);
         };
-    });
+    }, [minutes, seconds]);
 
     return (
         <div className="countdown">{seconds > 9 ? (

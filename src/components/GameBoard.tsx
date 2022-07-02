@@ -97,6 +97,7 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
         );
 
         if (squares.every((square) => square.square === squares[0].square)) {
+
             const firstChange = gameBoard?.map((gameSquare) => {
                 if (gameSquare.id === squareOne?.id) {
                     return { ...gameSquare, matched: true };
@@ -173,7 +174,6 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
         setSeconds(59);
         setGameOver(false);
         setWin(false);
-        setComparing(false);
         setSquaresToCompare([]);
         setGameBoard(initialGameBoard);
     };
