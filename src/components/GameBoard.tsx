@@ -36,6 +36,7 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
   const [minutes, setMinutes] = useState(parseInt(time[0]) - 1);
   const [seconds, setSeconds] = useState(59);
   const [squaresToCompare, setSquaresToCompare] = useState<Square[]>([]);
+  const [comparing, setComparing] = useState(false);
 
   useEffect(() => {
     let myInterval = setInterval(() => {
@@ -90,6 +91,9 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
           return gameSquare;
         });
         setGameBoard(matchedGameBoard);
+        setTimeout(() => {
+          setComparing(false);
+        }, 1000);
       });
     } else {
       const squareOne = gameBoard?.find(
@@ -115,6 +119,7 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
 
       setTimeout(() => {
         setGameBoard(secondChange);
+        setComparing(false);
       }, 1000); // ADD AN ANIMATION WHILE SETTING THEM BACK TO FALSE.
     }
     setSquaresToCompare([]);
@@ -127,7 +132,7 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
     selected: boolean;
     matched: boolean;
   }) => {
-    if (!square.matched) {
+    if (!square.matched && !comparing) {
       addSquaresToCompare(square);
 
       const selectedSquare = gameBoard?.map((gameSquare) => {
@@ -154,6 +159,7 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
   useEffect(() => {
     if (squaresToCompare.length === 2) {
       checkSquaresEquality(squaresToCompare);
+      setComparing(true);
     }
   }, [squaresToCompare]);
 
