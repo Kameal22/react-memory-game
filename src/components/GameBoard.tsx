@@ -24,6 +24,15 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
       }
     | undefined
   >();
+  const [initialGameBoard, setInitialGameBoard] = useState<
+    | {
+        square: string;
+        id: string;
+        selected: boolean;
+        matched: boolean;
+      }[]
+    | undefined
+  >();
   const [gameBoard, setGameBoard] = useState<
     | {
         square: string;
@@ -68,6 +77,7 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
 
       setGameSize(selectedSize);
       setGameBoard(selectedBoard?.sort(() => 0.5 - Math.random()));
+      setInitialGameBoard(selectedBoard?.sort(() => 0.5 - Math.random()));
     } else if (theme === "icons") {
       const selectedSize = iconSquareSizes.find(
         (gameSize) => gameSize.boardSize === parseInt(size)
@@ -76,6 +86,7 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
 
       setGameSize(selectedSize);
       setGameBoard(selectedBoard?.sort(() => 0.5 - Math.random()));
+      setInitialGameBoard(selectedBoard?.sort(() => 0.5 - Math.random()));
     }
   }, []);
 
@@ -83,14 +94,17 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
     if (minutes === 0 && seconds === 0) {
       setGameOver(true);
     }
-
     if (gameBoard?.every((square) => square.matched === true)) {
       setWin(true);
     }
-    // If EVERY square value in a gameBoard has selected === true - set game end.
-    // If time's out - set game end.
-    // IF GAME END = SHOW GAME OVER HEADING INSTEAD OF TIME.
   }, [minutes, seconds, gameBoard]);
+
+  useEffect(() => {
+    if (squaresToCompare.length === 2) {
+      checkSquaresEquality(squaresToCompare);
+      setComparing(true);
+    }
+  }, [squaresToCompare]);
 
   const checkSquaresEquality = (squares: Square[]) => {
     if (squares.every((square) => square.square === squares[0].square)) {
@@ -104,7 +118,7 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
         setGameBoard(matchedGameBoard);
         setTimeout(() => {
           setComparing(false);
-        }, 1000);
+        }, 500);
       });
     } else {
       const squareOne = gameBoard?.find(
@@ -131,13 +145,12 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
       setTimeout(() => {
         setGameBoard(secondChange);
         setComparing(false);
-      }, 1000); // ADD AN ANIMATION WHILE SETTING THEM BACK TO FALSE.
+      }, 500); // ADD AN ANIMATION WHILE SETTING THEM BACK TO FALSE.
     }
     setSquaresToCompare([]);
   };
 
   const selectSquare = (square: {
-    // DISABLE CLICKING ON MORE THAN 2 SQUARES / CLICKING WHEN SQUARES ARE BEING CHECKED.
     square: string;
     id: string;
     selected: boolean;
@@ -167,15 +180,18 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
     }
   };
 
-  useEffect(() => {
-    if (squaresToCompare.length === 2) {
-      checkSquaresEquality(squaresToCompare);
-      setComparing(true);
-    }
-  }, [squaresToCompare]);
+  const resetGame = () => {
+    setMinutes(parseInt(time[0]) - 1);
+    setSeconds(59);
+    setGameOver(false);
+    setWin(false);
+    setComparing(false);
+    setSquaresToCompare([]);
+    setGameBoard(initialGameBoard);
+  };
 
   return (
-    <div onClick={() => console.log(minutes, seconds)} className="gameBoard">
+    <div onClick={() => console.log(initialGameBoard)} className="gameBoard">
       <div className="gameBoardOptions">
         <div className="countdown">
           {!win ? (
@@ -193,7 +209,9 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
           )}
         </div>
         <div className="buttons">
-          <button className="restartButton">Restart</button>
+          <button onClick={() => resetGame()} className="restartButton">
+            Restart
+          </button>
           <button className="newGameButton" onClick={() => backToMenu()}>
             New game
           </button>
