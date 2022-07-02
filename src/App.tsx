@@ -11,7 +11,6 @@ function App() {
   const [gameTheme, setGameTheme] = useState("");
   const [gameBoardSize, setGameBoardSize] = useState("");
   const [gameTime, setGameTime] = useState("");
-  // If gameStart - show GameBoard. Else show GameConfiguration.
 
   useEffect(() => {
     if (gameTheme && gameBoardSize && gameTime) {
