@@ -1,6 +1,6 @@
 # Quick fun memory game with React.
 
-To run it - https://react-memory-game-ggkchfd2k-kameal22.vercel.app/
+To run it - https://react-memory-game-4slow5jc6-kameal22.vercel.app
 
 ![image](https://user-images.githubusercontent.com/80644310/176904939-6d5ce627-3b66-456d-9cce-74ed3790d61b.png)
 
