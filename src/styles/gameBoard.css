@@ -90,3 +90,15 @@
     color: ivory;
     cursor: pointer;
 }
+
+.gameOver{
+    position: absolute; 
+    top: 40%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    color: orange;
+}
+
+.win{
+    color: orange;
+}

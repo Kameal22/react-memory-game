@@ -37,6 +37,8 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
   const [seconds, setSeconds] = useState(59);
   const [squaresToCompare, setSquaresToCompare] = useState<Square[]>([]);
   const [comparing, setComparing] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
+  const [win, setWin] = useState(false);
 
   useEffect(() => {
     let myInterval = setInterval(() => {
@@ -78,8 +80,17 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
   }, []);
 
   useEffect(() => {
+    if (minutes === 0 && seconds === 0) {
+      setGameOver(true);
+    }
+
+    if (gameBoard?.every((square) => square.matched === true)) {
+      setWin(true);
+    }
     // If EVERY square value in a gameBoard has selected === true - set game end.
-  }, [gameBoard]);
+    // If time's out - set game end.
+    // IF GAME END = SHOW GAME OVER HEADING INSTEAD OF TIME.
+  }, [minutes, seconds, gameBoard]);
 
   const checkSquaresEquality = (squares: Square[]) => {
     if (squares.every((square) => square.square === squares[0].square)) {
@@ -164,17 +175,21 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
   }, [squaresToCompare]);
 
   return (
-    <div className="gameBoard">
+    <div onClick={() => console.log(minutes, seconds)} className="gameBoard">
       <div className="gameBoardOptions">
         <div className="countdown">
-          {seconds > 9 ? (
-            <h3>
-              0{minutes}:{seconds}
-            </h3>
+          {!win ? (
+            seconds > 9 ? (
+              <h3>
+                0{minutes}:{seconds}
+              </h3>
+            ) : (
+              <h3>
+                0{minutes}:0{seconds}
+              </h3>
+            )
           ) : (
-            <h3>
-              0{minutes}:0{seconds}
-            </h3>
+            <h3 className="win">You win!</h3>
           )}
         </div>
         <div className="buttons">
@@ -185,40 +200,48 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
         </div>
       </div>
 
-      <div
-        style={{
-          gridTemplate: `repeat(${gameSize?.boardSize}, 1fr) / repeat(${gameSize?.boardSize}, 1fr)`,
-        }}
-        className="game"
-      >
-        {theme === "icons"
-          ? gameBoard?.map((square) => (
-              <div
-                key={Math.random()}
-                style={{
-                  width: gameSize?.squareSize,
-                  height: gameSize?.squareSize,
-                }}
-                id="square"
-              >
-                <i className={square.square}></i>
-              </div>
-            ))
-          : gameBoard?.map((square) => (
-              <div
-                onClick={() => selectSquare(square)}
-                key={Math.random()}
-                style={{
-                  width: gameSize?.squareSize,
-                  height: gameSize?.squareSize,
-                  backgroundColor: square.matched ? "orange" : "#293241",
-                }}
-                id="square"
-              >
-                <p>{square.selected ? square.square : null}</p>
-              </div>
-            ))}
-      </div>
+      {!gameOver ? (
+        <div
+          style={{
+            gridTemplate: `repeat(${gameSize?.boardSize}, 1fr) / repeat(${gameSize?.boardSize}, 1fr)`,
+          }}
+          className="game"
+        >
+          {theme === "icons"
+            ? gameBoard?.map((square) => (
+                <div
+                  onClick={() => selectSquare(square)}
+                  key={Math.random()}
+                  style={{
+                    width: gameSize?.squareSize,
+                    height: gameSize?.squareSize,
+                    backgroundColor: square.matched ? "orange" : "#293241",
+                  }}
+                  id="square"
+                >
+                  <i
+                    className={square.selected ? square.square : undefined}
+                  ></i>
+                </div>
+              ))
+            : gameBoard?.map((square) => (
+                <div
+                  onClick={() => selectSquare(square)}
+                  key={Math.random()}
+                  style={{
+                    width: gameSize?.squareSize,
+                    height: gameSize?.squareSize,
+                    backgroundColor: square.matched ? "orange" : "#293241",
+                  }}
+                  id="square"
+                >
+                  <p>{square.selected ? square.square : null}</p>
+                </div>
+              ))}
+        </div>
+      ) : (
+        <h1 className="gameOver">Game Over</h1>
+      )}
     </div>
   );
 };
