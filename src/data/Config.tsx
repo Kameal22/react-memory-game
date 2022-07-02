@@ -1,7 +1,7 @@
 export const themes = ["numbers", "icons"];
 
 export const boardSizes = [
-  { size: "2", text: "2 x 2" },
+  { size: "3", text: "3 x 3" },
   { size: "4", text: "4 x 4" },
   { size: "6", text: "6 x 6" },
 ];
@@ -10,13 +10,15 @@ export const playTime = ["1:00", "2:00", "3:00"];
 
 export const numSquareSizes = [
   {
-    boardSize: 2,
+    boardSize: 3,
     squareSize: 100,
     board: [
       { square: "1", id: "1", selected: false, matched: false },
       { square: "1", id: "2", selected: false, matched: false },
       { square: "2", id: "3", selected: false, matched: false },
       { square: "2", id: "4", selected: false, matched: false },
+      { square: "3", id: "5", selected: false, matched: false },
+      { square: "3", id: "6", selected: false, matched: false },
     ],
   },
   {
@@ -87,13 +89,15 @@ export const numSquareSizes = [
 
 export const iconSquareSizes = [
   {
-    boardSize: 2,
+    boardSize: 3,
     squareSize: 100,
     board: [
       { square: "bi bi-123", id: "1", selected: false, matched: false },
       { square: "bi bi-123", id: "2", selected: false, matched: false },
       { square: "bi bi-activity", id: "3", selected: false, matched: false },
       { square: "bi bi-activity", id: "4", selected: false, matched: false },
+      { square: "bi bi-alarm", id: "5", selected: false, matched: false },
+      { square: "bi bi-alarm", id: "6", selected: false, matched: false },
     ],
   },
   {
@@ -104,8 +108,18 @@ export const iconSquareSizes = [
       { square: "bi bi-alarm", id: "2", selected: false, matched: false },
       { square: "bi bi-alarm-fill", id: "3", selected: false, matched: false },
       { square: "bi bi-alarm-fill", id: "4", selected: false, matched: false },
-      { square: "bi bi-align-bottom", id: "5", selected: false, matched: false },
-      { square: "bi bi-align-bottom", id: "6", selected: false, matched: false },
+      {
+        square: "bi bi-align-bottom",
+        id: "5",
+        selected: false,
+        matched: false,
+      },
+      {
+        square: "bi bi-align-bottom",
+        id: "6",
+        selected: false,
+        matched: false,
+      },
       { square: "bi bi-alt", id: "7", selected: false, matched: false },
       { square: "bi bi-alt", id: "8", selected: false, matched: false },
       { square: "bi bi-app", id: "9", selected: false, matched: false },
@@ -114,8 +128,18 @@ export const iconSquareSizes = [
       { square: "bi bi-apple", id: "12", selected: false, matched: false },
       { square: "bi bi-archive", id: "13", selected: false, matched: false },
       { square: "bi bi-archive", id: "14", selected: false, matched: false },
-      { square: "bi bi-arrow-90deg-down", id: "15", selected: false, matched: false },
-      { square: "bi bi-arrow-90deg-down", id: "16", selected: false, matched: false },
+      {
+        square: "bi bi-arrow-90deg-down",
+        id: "15",
+        selected: false,
+        matched: false,
+      },
+      {
+        square: "bi bi-arrow-90deg-down",
+        id: "16",
+        selected: false,
+        matched: false,
+      },
     ],
   },
   {
@@ -126,8 +150,18 @@ export const iconSquareSizes = [
       { square: "bi bi-alarm", id: "2", selected: false, matched: false },
       { square: "bi bi-alarm-fill", id: "3", selected: false, matched: false },
       { square: "bi bi-alarm-fill", id: "4", selected: false, matched: false },
-      { square: "bi bi-align-bottom", id: "5", selected: false, matched: false },
-      { square: "bi bi-align-bottom", id: "6", selected: false, matched: false },
+      {
+        square: "bi bi-align-bottom",
+        id: "5",
+        selected: false,
+        matched: false,
+      },
+      {
+        square: "bi bi-align-bottom",
+        id: "6",
+        selected: false,
+        matched: false,
+      },
       { square: "bi bi-alt", id: "7", selected: false, matched: false },
       { square: "bi bi-alt", id: "8", selected: false, matched: false },
       { square: "bi bi-app", id: "9", selected: false, matched: false },
@@ -136,22 +170,72 @@ export const iconSquareSizes = [
       { square: "bi bi-apple", id: "12", selected: false, matched: false },
       { square: "bi bi-archive", id: "13", selected: false, matched: false },
       { square: "bi bi-archive", id: "14", selected: false, matched: false },
-      { square: "bi bi-arrow-90deg-down", id: "15", selected: false, matched: false },
-      { square: "bi bi-arrow-90deg-down", id: "16", selected: false, matched: false },
-      { square: "bi bi-arrow-through-heart", id: "17", selected: false, matched: false },
-      { square: "bi bi-arrow-through-heart", id: "18", selected: false, matched: false },
+      {
+        square: "bi bi-arrow-90deg-down",
+        id: "15",
+        selected: false,
+        matched: false,
+      },
+      {
+        square: "bi bi-arrow-90deg-down",
+        id: "16",
+        selected: false,
+        matched: false,
+      },
+      {
+        square: "bi bi-arrow-through-heart",
+        id: "17",
+        selected: false,
+        matched: false,
+      },
+      {
+        square: "bi bi-arrow-through-heart",
+        id: "18",
+        selected: false,
+        matched: false,
+      },
       { square: "bi bi-asterisk", id: "19", selected: false, matched: false },
       { square: "bi bi-asterisk", id: "20", selected: false, matched: false },
       { square: "bi bi-award", id: "21", selected: false, matched: false },
       { square: "bi bi-award", id: "22", selected: false, matched: false },
-      { square: "bi bi-badge-3d-fill", id: "23", selected: false, matched: false },
-      { square: "bi bi-badge-3d-fill", id: "24", selected: false, matched: false },
+      {
+        square: "bi bi-badge-3d-fill",
+        id: "23",
+        selected: false,
+        matched: false,
+      },
+      {
+        square: "bi bi-badge-3d-fill",
+        id: "24",
+        selected: false,
+        matched: false,
+      },
       { square: "bi bi-bank2", id: "25", selected: false, matched: false },
       { square: "bi bi-bank2", id: "26", selected: false, matched: false },
-      { square: "bi bi-battery-full", id: "27", selected: false, matched: false },
-      { square: "bi bi-battery-full", id: "28", selected: false, matched: false },
-      { square: "bi bi-battery-charging", id: "29", selected: false, matched: false },
-      { square: "bi bi-battery-charging", id: "30", selected: false, matched: false },
+      {
+        square: "bi bi-battery-full",
+        id: "27",
+        selected: false,
+        matched: false,
+      },
+      {
+        square: "bi bi-battery-full",
+        id: "28",
+        selected: false,
+        matched: false,
+      },
+      {
+        square: "bi bi-battery-charging",
+        id: "29",
+        selected: false,
+        matched: false,
+      },
+      {
+        square: "bi bi-battery-charging",
+        id: "30",
+        selected: false,
+        matched: false,
+      },
       { square: "bi bi-binoculars", id: "31", selected: false, matched: false },
       { square: "bi bi-binoculars", id: "32", selected: false, matched: false },
       { square: "bi bi-bicycle", id: "33", selected: false, matched: false },

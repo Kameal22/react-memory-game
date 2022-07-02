@@ -115,31 +115,32 @@ const GameBoard: React.FC<Props> = ({ backToMenu, theme, time, size }) => {
 
       setTimeout(() => {
         setGameBoard(secondChange);
-      }, 1000);
+      }, 1000); // ADD AN ANIMATION WHILE SETTING THEM BACK TO FALSE.
     }
     setSquaresToCompare([]);
   };
 
   const selectSquare = (square: {
-    // If sqare is already MATCHED - prevent from adding it there.
+    // DISABLE CLICKING ON MORE THAN 2 SQUARES / CLICKING WHEN SQUARES ARE BEING CHECKED.
     square: string;
     id: string;
     selected: boolean;
     matched: boolean;
   }) => {
-    addSquaresToCompare(square);
+    if (!square.matched) {
+      addSquaresToCompare(square);
 
-    const selectedSquare = gameBoard?.map((gameSquare) => {
-      if (gameSquare.id === square.id) {
-        return { ...gameSquare, selected: true };
-      }
-      return gameSquare;
-    });
-    setGameBoard(selectedSquare);
+      const selectedSquare = gameBoard?.map((gameSquare) => {
+        if (gameSquare.id === square.id) {
+          return { ...gameSquare, selected: true };
+        }
+        return gameSquare;
+      });
+      setGameBoard(selectedSquare);
+    }
   };
 
   const addSquaresToCompare = (square: {
-    // If sqare is already MATCHED - prevent from adding it there.
     square: string;
     id: string;
     selected: boolean;
